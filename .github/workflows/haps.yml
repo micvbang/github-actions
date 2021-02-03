@@ -14,15 +14,20 @@ defaults:
     shell: bash
 
 jobs:
-  ubuntu-2004:
+  windows:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04, ubuntu-latest]
+        os: [windows-latest]
 
     steps:
-    - name: Check shellcheck version
+    - name: Grab source
+      uses: actions/checkout@v2
+
+    - name: Run bash script
       run: |
-        shellcheck -V
-        lsb_release -a
+        ls -la
+        pwd
+        ls -la ../
+        make testscript
